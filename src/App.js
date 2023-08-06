@@ -20,7 +20,7 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   // Load user from localStorage if exists
@@ -42,7 +42,7 @@ const App = () => {
 
       setUser(user)
     } catch (exception) {
-      setErrorMessage("wrong username or password")
+      setErrorMessage('wrong username or password')
     }
   }
 
@@ -57,17 +57,17 @@ const App = () => {
     blogService.create(title, author, url)
       .then(data => {
         setBlogs(blogs.concat(data))
-        setSuccessMessage("Blog created")
+        setSuccessMessage('Blog created')
       })
-      .catch(error => {
-        setErrorMessage("Something went wrong")
+      .catch(() => {
+        setErrorMessage('Something went wrong')
       })
   }
 
   // Handle liking a blog
   const handleAddLike = (blog) => {
     blogService.addLike(blog)
-      .then(data => {
+      .then(() => {
         setBlogs(blogs.map(
           b => {
             if(b.id === blog.id) {
@@ -77,8 +77,8 @@ const App = () => {
           }
         ))
       })
-      .catch(error => {
-        setErrorMessage("Something went wrong")
+      .catch(() => {
+        setErrorMessage('Something went wrong')
       })
   }
 
@@ -96,7 +96,7 @@ const App = () => {
         })
     }
   }
-  
+
   // Set error or success notifications
   const setErrorMessage = message => {
     setMessage(message)
@@ -120,7 +120,7 @@ const App = () => {
   const sortedBlogs = blogs.sort(
     (a, b) => a.likes < b.likes
   )
-  
+
   if(!user) {
     return (
       <div>
@@ -134,13 +134,13 @@ const App = () => {
       <div>
         <h2>blogs</h2>
         {message && <Notification message={message} status={status} />}
-        
+
         <p>{user.name} logged in <button onClick={handleLogout}>logout</button></p>
 
         <Togglable buttonLabel='create new blog'>
           <BlogForm addBlog={handleAddBlog} />
         </Togglable>
-        
+
         {sortedBlogs.map(blog =>
           <Blog key={blog.id} blog={blog} addLike={handleAddLike} deleteBlog={handleDeleteBlog} canDelete={user.username === blog.user.username} />
         )}

@@ -29,7 +29,7 @@ const addLike = (blog) => {
     { ...blog, likes: blog.likes + 1, user: blog.user.id },
     config
   )
-  return request.then(response => response.data)                         
+  return request.then(response => response.data)
 }
 
 const deleteBlog = (blog) => {
@@ -43,5 +43,4 @@ const deleteBlog = (blog) => {
   return request.then(response => response.data)
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default { setToken, getAll, create, addLike, deleteBlog }
