@@ -12,3 +12,10 @@
     border: 2px solid #393;
     color: #393; 
 }
+
+
+.blog {
+    margin-bottom: 10px;
+    border: 2px solid #333;
+    padding: 5px;
+}
